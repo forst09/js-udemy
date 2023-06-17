@@ -17,4 +17,3 @@ for (let i = 0; i < 2; i++) {
     personalMovieDB.movies[filmName] = filmEstimation;
 }
 console.log(personalMovieDB);
-
