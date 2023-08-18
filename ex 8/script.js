@@ -30,7 +30,8 @@ function getTimeFromMinutes(minutes) {
         else if ([5, 6, 7, 8, 9, 0].includes(restMinutes % 10) || (restMinutes > 10 && restMinutes < 20)) {
             restMinutesString = `${restMinutes} минут`;
         }
-        return `${hoursString} и ${restMinutesString}`;
+
+        return `Это ${hoursString} и ${restMinutesString}`;
     }
     else return 'Ошибка, проверьте данные';
 }
