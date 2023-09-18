@@ -36,8 +36,8 @@ function start() {
 
 function rememberMyFilms() {
     for (let i = 0; i < 2; i++) {
-        filmName = prompt('один из последних просмотренных фильмов?');
-        filmEstimation = prompt('на сколько оцените его?');
+        filmName = prompt('один из последних просмотренных фильмов?').trim();
+        filmEstimation = prompt('на сколько оцените его?').trim();
         if (filmName == '' || filmEstimation == '' || filmName === null
             || filmEstimation === null || filmName.length > 50) {
             i--;
@@ -48,7 +48,7 @@ function rememberMyFilms() {
     }
 }
 
-// rememberMyFilms();
+rememberMyFilms();
 
 function detectPersonalLevel() {
     if (personalMovieDB.count < 10) {
