@@ -25,8 +25,6 @@ const personalPlanPeter = {
     }
 };
 
-personalPlanPeter.showAgeAndLangs(personalPlanPeter);
-
 // Напишите функцию showExperience, которая будет принимать в себя
 // объект со всеми данными и возвращать строку с опытом.
 //P.S. желательно использовать деструктуризацию, но не обязательно
