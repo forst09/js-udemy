@@ -31,11 +31,12 @@ const allCurrencies = [...baseCurrencies, ...additionalCurrencies];
 
 function availableCurr(arr, missingCurr) {
     let currString = '';
+    let newCurrString = '';
+    let response = '';
+
     for (let key in arr) {
         currString += arr[key] + '\n';
     }
-    let newCurrString = '';
-    let response = '';
 
     if (arr.length === 0) {
         response = 'Нет доступных валют';
