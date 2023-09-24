@@ -1,30 +1,23 @@
 'use strict';
 
-let str = 'some';
-let strObj = new String(str);
+let y = 1;
+let x = y = 2;
+alert(x);
 
-// console.log(typeof (str));
-// console.log(typeof (strObj));
+[] + 1 + 2;
 
-// console.dir([1, 2, 3]);
+console.log('1'[0]);
 
-const soldier = {
-    health: 400,
-    armor: 100,
-    seyHello: function () {
-        console.log('hello');
-    }
-};
+[] + false - null + true
 
-const john = Object.create(soldier);
+2 && 1 && null && 0 && undefined;
 
-// const john = {
-//     health: 100
-// };
+console.log(!!(1 && 2) == (1 && 2));
 
-// john.__proto__ = soldier;
+alert(null || 2 && 3 || 4);
 
-// Object.setPrototypeOf(john, soldier);
+alert(+'Infinity');
 
-john.seyHello();
-console.log(john.armor);
+'Ёжик' > 'яблоко';
+
+console.log(0 || '' || 2 || undefined || true || falsе);
