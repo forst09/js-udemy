@@ -1,23 +1,48 @@
 'use strict';
 
-let y = 1;
-let x = y = 2;
-alert(x);
+const box = document.getElementById('box'),
+    btns = document.getElementsByTagName('button'),
+    circles = document.getElementsByClassName('circle'),
+    oneHeart = document.querySelector('.heart'),
+    hearts = document.querySelectorAll('.heart'),
+    wrapper = document.querySelector('.wrapper'),
+    heart = wrapper.querySelector('.heart');
 
-[] + 1 + 2;
+// box.style.backgroundColor = 'blue';
+// box.style.width = '500px';
 
-console.log('1'[0]);
+box.style.cssText = 'background-color: blue; width: 500px';
 
-[] + false - null + true
+btns[1].style.borderRadius = '100%'
+circles[0].style.backgroundColor = 'red';
 
-2 && 1 && null && 0 && undefined;
+// for (let i = 0; i < hearts.length; i++) {
+//     hearts[i].style.backgroundColor = 'blue';
+// }
 
-console.log(!!(1 && 2) == (1 && 2));
+hearts.forEach(item => {
+    item.style.backgroundColor = 'blue';
+});
 
-alert(null || 2 && 3 || 4);
+const div = document.createElement('div');
+const text = document.createTextNode('тут был я');
 
-alert(+'Infinity');
+div.classList.add('black');
 
-'Ёжик' > 'яблоко';
+wrapper.append(div);
 
-console.log(0 || '' || 2 || undefined || true || falsе);
+div.innerHTML = '<h1>hello world</h1>';
+div.insertAdjacentHTML('afterend', '<h2>hello</h2>');
+// div.textContent = 'hello';
+
+// wrapper.prepend(div);
+// hearts[0].after(div);
+// hearts[0].before(div);
+
+// circles[0].remove();
+// hearts[0].replaceWith(circles[0]);
+// wrapper.appendChild(div);
+// wrapper.insertBefore(div, hearts[2]);
+// wrapper.removeChild(hearts[1]);
+// wrapper.replaceChild(circles[0], hearts[0]);
+
