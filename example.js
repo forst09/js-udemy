@@ -1,48 +1,107 @@
 'use strict';
 
-const box = document.getElementById('box'),
-    btns = document.getElementsByTagName('button'),
-    circles = document.getElementsByClassName('circle'),
-    oneHeart = document.querySelector('.heart'),
-    hearts = document.querySelectorAll('.heart'),
-    wrapper = document.querySelector('.wrapper'),
-    heart = wrapper.querySelector('.heart');
+// function pow(x, n) {
+//     let result = 1;
+//     for (let i = 0; i < n; i++) {
+//         result *= x;
+//     }
 
-// box.style.backgroundColor = 'blue';
-// box.style.width = '500px';
-
-box.style.cssText = 'background-color: blue; width: 500px';
-
-btns[1].style.borderRadius = '100%'
-circles[0].style.backgroundColor = 'red';
-
-// for (let i = 0; i < hearts.length; i++) {
-//     hearts[i].style.backgroundColor = 'blue';
+//     return result;
 // }
 
-hearts.forEach(item => {
-    item.style.backgroundColor = 'blue';
-});
+function pow(x, n) {
+    if (n === 1) {
+        return x;
+    }
+    else {
+        return x * pow(x, n - 1);
+    }
+}
 
-const div = document.createElement('div');
-const text = document.createTextNode('тут был я');
+// const hehe = pow(2, 5);
+// console.log(hehe);
 
-div.classList.add('black');
+let students = {
+    js: [{
+        name: 'john',
+        progress: 100
+    }, {
+        name: 'ivan',
+        progress: 60
+    }],
 
-wrapper.append(div);
+    html: {
+        basic: [{
+            name: 'peter',
+            progress: 20
+        }, {
+            name: 'ann',
+            progress: 18
+        }],
 
-div.innerHTML = '<h1>hello world</h1>';
-div.insertAdjacentHTML('afterend', '<h2>hello</h2>');
-// div.textContent = 'hello';
+        pro: [{
+            name: 'sam',
+            progress: 10
+        }],
 
-// wrapper.prepend(div);
-// hearts[0].after(div);
-// hearts[0].before(div);
+        semi: {
+            students: [{
+                name: 'test',
+                progress: 100
+            }]
+        }
+    }
+};
 
-// circles[0].remove();
-// hearts[0].replaceWith(circles[0]);
-// wrapper.appendChild(div);
-// wrapper.insertBefore(div, hearts[2]);
-// wrapper.removeChild(hearts[1]);
-// wrapper.replaceChild(circles[0], hearts[0]);
+function getTotalProgressByIteration(data) {
+    let total = 0;
+    let students = 0;
 
+    for (let course of Object.values(data)) {
+        if (Array.isArray(course)) {
+            students += course.length;
+
+            for (let i = 0; i < course.length; i++) {
+                total += course[i].progress;
+            }
+        }
+        else {
+            for (let subcourse of Object.values(course)) {
+                students += subcourse.length;
+                for (let i = 0; i < subcourse.length; i++) {
+                    total += subcourse[i].progress;
+                }
+            }
+        }
+    }
+
+    return total / students;
+}
+
+// console.log(getTotalProgressByIteration(students));
+
+function getTotalProgressByRecursion(data) {
+    if (Array.isArray(data)) {
+        let total = 0;
+
+        for (let i = 0; i < data.length; i++) {
+            total += data[i].progress;
+        }
+
+        return [total, data.length];
+    }
+    else {
+        let total = [0, 0];
+        for (let subData of Object.values(data)) {
+            const subDataArr = getTotalProgressByRecursion(subData);
+            total[0] += subDataArr[0];
+            total[1] += subDataArr[1];
+        }
+
+        return total;
+    }
+}
+
+const result = getTotalProgressByRecursion(students);
+
+console.log(result[0] / result[1]);

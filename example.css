@@ -80,3 +80,12 @@ button {
     margin-top: 30px;
     color: #fff;
 }
+
+.overlay {
+    max-width: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+    background-color: pink;
+}
