@@ -1,13 +1,14 @@
 'use strict';
 
-// const bigint = 1235456151654894156187484548625648n;
+const now = new Date('2020-05-01');
+now.setHours(40);
+console.log(now);
 
-const sameBigint = BigInt(1235456151654894156187484548625648);
+let start = new Date();
+for (let i = 0; i < 100000; i++) {
+    let some = i ** 3;
+}
 
-// console.log(2n > 5);
+let end = new Date();
 
-let bigint = 1n;
-let number = 2;
-
-console.log(bigint + BigInt(number));
-console.log(+bigint + number);
+console.log(`цикл отработал за ${end - start} миллисекунд`);
