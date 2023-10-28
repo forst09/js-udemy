@@ -1,14 +1,35 @@
 'use strict';
 
-const now = new Date('2020-05-01');
-now.setHours(40);
-console.log(now);
+class Rectangle {
+    constructor(height, width) {
+        this.height = height;
+        this.width = width;
+    }
 
-let start = new Date();
-for (let i = 0; i < 100000; i++) {
-    let some = i ** 3;
+    calcArea() {
+        return this.height * this.width;
+    }
 }
 
-let end = new Date();
+class ColoredRectangleWithText extends Rectangle {
+    constructor(height, width, text, bgColor) {
+        super(height, width);
+        this.text = text;
+        this.bgColor = bgColor;
+    }
 
-console.log(`цикл отработал за ${end - start} миллисекунд`);
+    showMyProps() {
+        console.log(`текст: ${this.text}, цвет: ${this.bgColor}`);
+    }
+}
+
+const div = new ColoredRectangleWithText(25, 10, 'hehe', 'red');
+
+div.showMyProps();
+console.log(div.calcArea());
+
+// const square = new Rectangle(10, 10);
+// const long = new Rectangle(20, 100);
+
+// console.log(long.calcArea());
+// console.log(square.calcArea());
