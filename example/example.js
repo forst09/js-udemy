@@ -1,35 +1,24 @@
 'use strict';
 
-class Rectangle {
-    constructor(height, width) {
-        this.height = height;
-        this.width = width;
-    }
-
-    calcArea() {
-        return this.height * this.width;
-    }
+const log = function (a, b, ...rest) {
+    console.log(a, b, rest);
 }
 
-class ColoredRectangleWithText extends Rectangle {
-    constructor(height, width, text, bgColor) {
-        super(height, width);
-        this.text = text;
-        this.bgColor = bgColor;
-    }
+log('basic', 'rest', 'operator', 'usage');
 
-    showMyProps() {
-        console.log(`текст: ${this.text}, цвет: ${this.bgColor}`);
-    }
+function calcOrDouble(number, basis = 2) {
+    console.log(number * basis);
 }
 
-const div = new ColoredRectangleWithText(25, 10, 'hehe', 'red');
+calcOrDouble(3);
 
-div.showMyProps();
-console.log(div.calcArea());
+function getSum(a, b) {
+    function sum() {
+        console.log(this.a);
+        return a + b;
+    }
 
-// const square = new Rectangle(10, 10);
-// const long = new Rectangle(20, 100);
+    console.log(sum());
+}
 
-// console.log(long.calcArea());
-// console.log(square.calcArea());
+getSum(4, 5);
