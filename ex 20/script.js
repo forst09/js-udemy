@@ -66,13 +66,9 @@ function setFilmsIds(arr) {
 Если это так - функция возвращает true. Очевидно, что сейчас условие должно выполняться, если мы передаем checkFilms(tranformedArray)*/
 
 const tranformedArray = setFilmsIds(films);
-// console.log(tranformedArray);
-
-// console.log(tranformedArray);
 
 function checkFilms(arr) {
     return arr.every(item => 'id' in item);
 }
 
-console.log(checkFilms(tranformedArray));
-// checkFilms(tranformedArray);
+// console.log(checkFilms(tranformedArray));
