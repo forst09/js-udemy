@@ -180,7 +180,6 @@ window.addEventListener('DOMContentLoaded', () => {
                             <div class="menu__item-total"><span>${this.cost}</span> грн/день</div>
                          </div>`;
                 cardsContainer.append(cardHTML);
-                console.log('hehe')
             };
 
 
@@ -285,6 +284,10 @@ window.addEventListener('DOMContentLoaded', () => {
             closeModal();
         }, 4000)
     }
+
+    fetch('http://localhost:3000/menu')
+        .then(data => data.json())
+        .then(res => console.log(res));
 
 });
 
