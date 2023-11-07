@@ -317,7 +317,11 @@ window.addEventListener('DOMContentLoaded', () => {
     const sliderNav = slider.querySelector('.offer__slider-counter');
     const sliderNext = sliderNav.querySelector('.offer__slider-next');
     const sliderPrev = sliderNav.querySelector('.offer__slider-prev');
+    const slidesWrapper = slider.querySelector('.offer__slider-wrapper');
+    const slidesField = slider.querySelector('.offer__slider-inner');
+    const width = window.getComputedStyle(slidesWrapper).width;
     let sliderIndex = 1;
+    let offset = 0;
 
     function insertIndex() {
         if (sliderIndex < 10) {
@@ -326,15 +330,6 @@ window.addEventListener('DOMContentLoaded', () => {
         else {
             sliderNav.querySelector('#current').textContent = sliderIndex;
         }
-    }
-
-    function slideActive() {
-        slides.forEach(slide => {
-            slide.classList.remove('active');
-            if (sliderIndex == slide.getAttribute('index')) {
-                slide.classList.add('active');
-            }
-        })
     }
 
     insertIndex();
@@ -348,9 +343,16 @@ window.addEventListener('DOMContentLoaded', () => {
 
     slides.forEach((slide, i) => {
         slide.setAttribute('index', i + 1);
-        if (sliderIndex === i + 1) {
-            slide.classList.add('active');
-        }
+    });
+
+    slidesField.style.width = 100 * slides.length + '%';
+    slidesField.style.display = 'flex';
+    slidesField.style.transition = '0.5s all';
+
+    slidesWrapper.style.overflow = 'hidden';
+
+    slides.forEach(slide => {
+        slide.style.width = width;
     });
 
     sliderNext.addEventListener('click', () => {
@@ -361,7 +363,14 @@ window.addEventListener('DOMContentLoaded', () => {
             sliderIndex++;
         }
         insertIndex();
-        slideActive();
+
+        if (offset == +width.slice(0, width.length - 2) * (slides.length - 1)) {
+            offset = 0;
+        }
+        else {
+            offset += +width.slice(0, width.length - 2);
+        }
+        slidesField.style.transform = `translateX(-${offset}px)`;
     });
 
     sliderPrev.addEventListener('click', () => {
@@ -370,8 +379,69 @@ window.addEventListener('DOMContentLoaded', () => {
             sliderIndex = slides.length;
         }
         insertIndex();
-        slideActive();
-    });
+
+        if (offset === 0) {
+            offset = +width.slice(0, width.length - 2) * (slides.length - 1);
+        }
+        else {
+            offset -= +width.slice(0, width.length - 2);
+        }
+        slidesField.style.transform = `translateX(-${offset}px)`;
+    })
+
+    // function insertIndex() {
+    //     if (sliderIndex < 10) {
+    //         sliderNav.querySelector('#current').textContent = `0${sliderIndex}`;
+    //     }
+    //     else {
+    //         sliderNav.querySelector('#current').textContent = sliderIndex;
+    //     }
+    // }
+
+    // function slideActive() {
+    //     slides.forEach(slide => {
+    //         slide.classList.remove('active');
+    //         if (sliderIndex == slide.getAttribute('index')) {
+    //             slide.classList.add('active');
+    //         }
+    //     })
+    // }
+
+    // insertIndex();
+
+    // if (slides.length < 10) {
+    //     sliderNav.querySelector('#total').textContent = `0${slides.length}`;
+    // }
+    // else {
+    //     sliderNav.querySelector('#total').textContent = slides.length;
+    // }
+
+    // slides.forEach((slide, i) => {
+    //     slide.setAttribute('index', i + 1);
+    //     if (sliderIndex === i + 1) {
+    //         slide.classList.add('active');
+    //     }
+    // });
+
+    // sliderNext.addEventListener('click', () => {
+    //     if (sliderIndex >= slides.length) {
+    //         sliderIndex = 1;
+    //     }
+    //     else {
+    //         sliderIndex++;
+    //     }
+    //     insertIndex();
+    //     slideActive();
+    // });
+
+    // sliderPrev.addEventListener('click', () => {
+    //     sliderIndex--;
+    //     if (sliderIndex < 1) {
+    //         sliderIndex = slides.length;
+    //     }
+    //     insertIndex();
+    //     slideActive();
+    // });
 
 });
 
