@@ -131,7 +131,7 @@ window.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    const modalTimerID = setTimeout(openModal, 50000);
+    // const modalTimerID = setTimeout(openModal, 50000);
 
     function showModalByScroll() {
         if (window.pageYOffset + document.documentElement.clientHeight >= document.documentElement.scrollHeight) {
@@ -140,7 +140,7 @@ window.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    window.addEventListener('scroll', showModalByScroll);
+    // window.addEventListener('scroll', showModalByScroll);
 
     //cards
     const cardsContainer = document.querySelector('.menu__field .container');
@@ -310,6 +310,68 @@ window.addEventListener('DOMContentLoaded', () => {
     fetch('http://localhost:3000/menu')
         .then(data => data.json())
         .then(res => console.log(res));
+
+    //slider
+    const slider = document.querySelector('.offer__slider');
+    const slides = slider.querySelectorAll('.offer__slide');
+    const sliderNav = slider.querySelector('.offer__slider-counter');
+    const sliderNext = sliderNav.querySelector('.offer__slider-next');
+    const sliderPrev = sliderNav.querySelector('.offer__slider-prev');
+    let sliderIndex = 1;
+
+    function insertIndex() {
+        if (sliderIndex < 10) {
+            sliderNav.querySelector('#current').textContent = `0${sliderIndex}`;
+        }
+        else {
+            sliderNav.querySelector('#current').textContent = sliderIndex;
+        }
+    }
+
+    function slideActive() {
+        slides.forEach(slide => {
+            slide.classList.remove('active');
+            if (sliderIndex == slide.getAttribute('index')) {
+                slide.classList.add('active');
+            }
+        })
+    }
+
+    insertIndex();
+
+    if (slides.length < 10) {
+        sliderNav.querySelector('#total').textContent = `0${slides.length}`;
+    }
+    else {
+        sliderNav.querySelector('#total').textContent = slides.length;
+    }
+
+    slides.forEach((slide, i) => {
+        slide.setAttribute('index', i + 1);
+        if (sliderIndex === i + 1) {
+            slide.classList.add('active');
+        }
+    });
+
+    sliderNext.addEventListener('click', () => {
+        if (sliderIndex >= slides.length) {
+            sliderIndex = 1;
+        }
+        else {
+            sliderIndex++;
+        }
+        insertIndex();
+        slideActive();
+    });
+
+    sliderPrev.addEventListener('click', () => {
+        sliderIndex--;
+        if (sliderIndex < 1) {
+            sliderIndex = slides.length;
+        }
+        insertIndex();
+        slideActive();
+    });
 
 });
 
