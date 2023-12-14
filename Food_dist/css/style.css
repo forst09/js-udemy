@@ -297,6 +297,7 @@ a {
 }
 
 .offer__slider {
+    position: relative;
     width: 650px;
     margin-top: 50px;
     display: flex;
