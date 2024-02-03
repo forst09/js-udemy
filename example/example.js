@@ -1,41 +1,23 @@
 'use strict';
 
-// const names = ['Ivan', 'Ann', 'Ksenia', 'Voldemart'];
+// new RegExp('pattern', 'flags');
+// /pattern/f
 
-// const shortNames = names.filter(function (name) {
-//     return name.length < 5;
-// });
+// const ans = prompt('введите ваше число');
 
-// console.log(shortNames);
+// const reg = /\d/g;
 
-// let answers = ['IvAn', 'AnnA', 'Hello'];
+// console.log(ans.match(reg));
 
-// answers = answers.map(item => item.toLowerCase());
+const str = 'my name is R2D2';
 
-// console.log(answers);
+console.log(str.match(/\D/ig));
 
-// const some = [4, 5, 6];
 
-// console.log(some.every(item => typeof (item) === 'number'));
+// console.log(ans.match(reg));
 
-// const arr = [4, 5, 1, 3, 2, 6];
+// const pass = prompt('password');
 
-// const res = arr.reduce((sum, current) => sum + current, 3);
-// console.log(res);
-// const arr = ['apple', 'pear', 'plum'];
+// console.log(pass.replace(/\\/g, '*'));
 
-// const res = arr.reduce((sum, current) => `${sum}, ${current}`);
-// console.log(res);
-
-const obj = {
-    ivan: 'persone',
-    ann: 'persone',
-    dog: 'animal',
-    cat: 'animal'
-}
-
-const newArr = Object.entries(obj)
-    .filter(item => item[1] === 'persone')
-    .map(item => item[0]);
-
-console.log(newArr);
+// console.log('12-34-56'.replace(/-/g, ':'));
