@@ -1,12 +1,12 @@
-function slider() {
+function slider({ container, slide, nextArrow, prevArrow, totalCounter, wrapper, field }) {
     //slider
-    const slider = document.querySelector('.offer__slider');
-    const slides = slider.querySelectorAll('.offer__slide');
-    const sliderNav = slider.querySelector('.offer__slider-counter');
-    const sliderNext = sliderNav.querySelector('.offer__slider-next');
-    const sliderPrev = sliderNav.querySelector('.offer__slider-prev');
-    const slidesWrapper = slider.querySelector('.offer__slider-wrapper');
-    const slidesField = slider.querySelector('.offer__slider-inner');
+    const slider = document.querySelector(container);
+    const slides = slider.querySelectorAll(slide);
+    const sliderNav = slider.querySelector(totalCounter);
+    const sliderNext = sliderNav.querySelector(nextArrow);
+    const sliderPrev = sliderNav.querySelector(prevArrow);
+    const slidesWrapper = slider.querySelector(wrapper);
+    const slidesField = slider.querySelector(field);
     const width = window.getComputedStyle(slidesWrapper).width;
     let sliderIndex = 1;
     let offset = 0;
@@ -154,4 +154,4 @@ function slider() {
     })
 }
 
-module.exports = slider;
+export default slider;

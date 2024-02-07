@@ -1,40 +1,47 @@
-function modal() {
-    //modal
-    const modalBtn = document.querySelectorAll('[data-modal]');
-    const modal = document.querySelector('.modal');
+function openModal(modalSelector, modalTimerID) {
+    const modal = document.querySelector(modalSelector);
 
-    function openModal() {
-        modal.classList.add('show');
-        document.body.style.overflow = 'hidden';
+    modal.classList.add('show');
+    document.body.style.overflow = 'hidden';
+
+    console.log(modalTimerID);
+    if (modalTimerID) {
         clearInterval(modalTimerID);
     }
+}
 
-    function closeModal() {
-        modal.classList.remove('show');
-        document.body.style.overflow = '';
-    }
+function closeModal(modalSelector) {
+    const modal = document.querySelector(modalSelector);
+
+    modal.classList.remove('show');
+    document.body.style.overflow = '';
+}
+
+function modal(triggerSelector, modalSelector, modalTimerID) {
+    //modal
+    const modalBtn = document.querySelectorAll(triggerSelector);
+    const modal = document.querySelector(modalSelector);
 
     modalBtn.forEach(item => {
-        item.addEventListener('click', openModal);
+        item.addEventListener('click', () => openModal(modalSelector, modalTimerID));
     });
 
     modal.addEventListener('click', (e) => {
         if (e.target === modal || e.target.getAttribute('data-close') == '') {
-            closeModal();
+            closeModal(modalSelector);
         }
     });
 
     document.addEventListener('keydown', (e) => {
         if (e.code === 'Escape' && modal.classList.contains('show')) {
-            closeModal();
+            closeModal(modalSelector);
         }
     });
 
-    // const modalTimerID = setTimeout(openModal, 50000);
 
     function showModalByScroll() {
         if (window.pageYOffset + document.documentElement.clientHeight >= document.documentElement.scrollHeight) {
-            openModal();
+            openModal(modalSelector, modalTimerID);
             window.removeEventListener('scroll', showModalByScroll);
         }
     }
@@ -45,4 +52,6 @@ function modal() {
 
 }
 
-module.exports = modal;
+export default modal;
+export { closeModal };
+export { openModal };
