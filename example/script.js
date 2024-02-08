@@ -1,33 +1,23 @@
 'use strict';
 
-const data = [
-    {
-        id: 'box',
-        tag: 'div'
-    },
-    {
-        id: 'ff',
-        tag: 'nav'
-    },
-    {
-        id: 'circle',
+let pos = 0;
+const box = document.querySelector('.box');
+const btn = document.querySelector('button');
+
+function animation() {
+    pos++;
+    box.style.top = pos + 'px';
+    box.style.left = pos + 'px';
+
+    if (pos < 300) {
+        requestAnimationFrame(animation);
     }
-]
-
-try {
-
-    data.forEach((blockObj, i) => {
-        const block = document.createElement(blockObj.tag);
-
-        if (!blockObj.id) throw new Error(`в данных под номером ${i + 1} нет id`);
-
-        block.setAttribute('id', blockObj.id);
-        document.body.append(block);
-    });
 }
-catch (e) {
-    if (e.name === "SyntaxError") {
-        console.log(e.message);
-    }
-    else throw e;
-}
+
+btn.addEventListener('click', () => {
+    requestAnimationFrame(animation);
+});
+
+let id = requestAnimationFrame(animation);
+cancelAnimationFrame(id);
+
